@@ -86,8 +86,8 @@ global VRF;
 global rr;
 global VAC;
 global WAC;
-        cla(handles.axes1,"reset"); 
-        cla(handles.axes2,"reset");
+        cla(handles.axes1,'reset'); 
+        cla(handles.axes2,'reset');
         rr=str2double(get(handles.edit6,'String'))/1000;   %field radius
         P=str2double(get(handles.edit11,'String'));   %atmospheric pressure
         FRF=str2double(get(handles.edit10,'String'));   %RF frequency
