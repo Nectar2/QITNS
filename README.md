@@ -1,12 +1,12 @@
 This is a simulation program for the trajectories of ions in a quadrupole field coupled with barometric pressure parameters.Adjustable parameters include field radius, mass-to-charge ratio, air pressure, etc.
 ## Requirements:
-matlab
+matlab(unlimited version)
 ## Usage
-Execute Pressure.m      
+Execute QITNS.m      
 Set the parameters in the boxes on the right   
 Click the “Calculate Ion Trajectory” button   
 If you want to save the results as an image, click “Save File” button
 ## Code Example
-![image](https://github.com/Nectar2/matlab/assets/157119290/fd92c1e8-b5f5-478f-9cbc-0dddd301d304)
+![image](https://github.com/Nectar2/QITNS/assets/157119290/998328b2-4e72-4508-adaa-8d91ae4ed0e7)
 ## Contributors
 Contributions welcome.
