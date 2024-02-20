@@ -22,7 +22,7 @@ function varargout = QITNS(varargin)
 
 % Edit the above text to modify the response to help QITNS
 
-% Last Modified by GUIDE v2.5 20-Feb-2024 10:34:13
+% Last Modified by GUIDE v2.5 20-Feb-2024 20:38:02
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -89,6 +89,7 @@ global rr;
 global VAC;
 global WAC;
 global Th;
+global qout;
         cla(handles.axes1,'reset'); 
         cla(handles.axes2,'reset');
         rr=str2double(get(handles.edit6,'String'))/1000;   %field radius
@@ -109,8 +110,11 @@ global Th;
         Ttest=[0:Tfs:2000]/(1e6);   %calculation time
         Odata=[0.001 0];    %Initial position and speed
         val=get(handles.popupmenu2,'Value');%Mode of excitation
+        qout=2*VRF/((rr*rr)*(omiga*omiga)*moz)/Th;
+        set(handles.edit18,'String',qout);
         set(handles.edit17,'String','Calculating...');
         drawnow;
+        maxt=get(handles.slider3,'value');
         if val==1
             [T,F] = ode113(@diopolar,Ttest,Odata);
         end
@@ -125,7 +129,7 @@ global Th;
         plot(handles.axes1,Tout,Rout);
         xlabel('us')
         ylabel('mm')
-        axis([0 500 min(Rout) max(Rout)]); 
+        axis([0 maxt min(Rout) max(Rout)]); 
         N1=length(Tout);
         fft1=abs(fft(Rout));
         FFT1=fft1/max(fft1);
@@ -501,4 +505,60 @@ function edit17_CreateFcn(hObject, eventdata, handles)
 %       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit18_Callback(hObject, eventdata, handles)
+% hObject    handle to edit18 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit18 as text
+%        str2double(get(hObject,'String')) returns contents of edit18 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit18_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit18 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes during object creation, after setting all properties.
+function uipanel4_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to uipanel4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes on slider movement.
+function slider3_Callback(hObject, eventdata, handles)
+% hObject    handle to slider3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+axes(handles.axes1);
+maxt=get(handles.slider3,'value');
+xlim([0 maxt]); 
+drawnow
+
+
+% --- Executes during object creation, after setting all properties.
+function slider3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
