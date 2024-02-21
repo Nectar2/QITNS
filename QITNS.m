@@ -111,10 +111,10 @@ global qout;
         Odata=[0.001 0];    %Initial position and speed
         val=get(handles.popupmenu2,'Value');%Mode of excitation
         qout=2*VRF/((rr*rr)*(omiga*omiga)*moz)/Th;
-        set(handles.edit18,'String',qout);
+        set(handles.edit18,'String',qout);%q value
         set(handles.edit17,'String','Calculating...');
         drawnow;
-        maxt=get(handles.slider3,'value');
+        maxt=get(handles.slider3,'value');%max x-axis value
         if val==1
             [T,F] = ode113(@diopolar,Ttest,Odata);
         end
