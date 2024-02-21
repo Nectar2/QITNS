@@ -7,6 +7,6 @@ Set the parameters in the boxes on the right
 Click the “Calculate Ion Trajectory” button   
 If you want to save the results as an image, click “Save File” button
 ## Code Example
-![image](https://github.com/Nectar2/QITNS/assets/157119290/cb56ad5c-2560-41e0-8241-5a6a2fae5b2c)
+![image](https://github.com/Nectar2/QITNS/assets/157119290/650bec94-9118-4a31-aa59-98e4156368f3)
 ## Contributors
 Contributions welcome.
